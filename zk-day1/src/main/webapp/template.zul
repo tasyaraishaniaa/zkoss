@@ -1,0 +1,71 @@
+<zk>
+    <style>
+        .z-window-content {
+        padding: 0;
+        }
+
+        body {
+        padding: 0;
+        }
+
+        .north {
+        background-color: #003366;
+        padding: 20px;
+        text-align: left;
+        }
+
+        .west {
+        background-color: #e0f7ff;
+        padding: 20px;
+        }
+
+        .a-west {
+        display: block;
+        padding: 10px 0;
+        text-decoration: none;
+        font-size: 16px;
+        }
+
+        .a-west:hover {
+        color: #005599;
+        text-decoration: underline;
+        }
+
+        .center-window {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .south-window {
+        background-color: #003366;
+        padding: 5px;
+        text-align: center;
+        }
+    </style>
+    <borderlayout hflex="1" vflex="1">
+        <north sclass="north">
+            <label value="OnboardX" style="font-size: 24px; font-weight: bold; color: white;"/>
+        </north>
+        <west sclass="west">
+            <vbox>
+                <a href="home.zul" sclass="a-west">Home</a>
+                <a href="registration.zul" sclass="a-west">Registration</a>
+                <a href="user-detail.zul" sclass="a-west">Users</a>
+            </vbox>
+        </west>
+        <center self="@insert(content)">
+        </center>
+        <south sclass="south-window">
+            <div style="width: 100%;">
+                <label value="© 2024 Tasya Raishania. All rights reserved." style="color: white;"/>
+            </div>
+        </south>
+    </borderlayout>
+</zk>

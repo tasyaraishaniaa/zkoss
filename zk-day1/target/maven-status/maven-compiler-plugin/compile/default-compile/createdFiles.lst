@@ -1,0 +1,4 @@
+user\UserController.class
+user\UserService.class
+user\User.class
+user\UserServiceImpl.class

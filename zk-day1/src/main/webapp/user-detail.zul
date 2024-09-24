@@ -34,11 +34,6 @@
         border: 1px solid white;
         }
 
-        .button:active { /* Style when the button is active */
-        background-color: #002244; /* Darker shade */
-        color: white; /* Keep text white */
-        }
-
         .listbox {
         border: 1px solid #ddd;
         background-color: white;

@@ -44,6 +44,10 @@ public class UserController extends SelectorComposer<Component> {
 
     private UserService userService = new UserServiceImpl();
 
+    public UserController() {
+        dataModel.addAll(userService.findAll());
+    }
+
     @Override
     public void doAfterCompose(Component comp) throws Exception {
         super.doAfterCompose(comp);

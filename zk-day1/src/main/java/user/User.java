@@ -1,16 +1,17 @@
 package user;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class User {
 
-    private Integer id;
+    private String id;
 
     private String username;
 
     private String gender;
 
-    private String birthday;
+    private Date birthday;
 
     private Integer age;
 
@@ -18,7 +19,11 @@ public class User {
 
     private String city;
 
-    public User(Integer id, String username, String gender, String birthday, Integer age, String province, String city) {
+    public User() {
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public User(String id, String username, String gender, Date birthday, Integer age, String province, String city) {
         this.id = id;
         this.username = username;
         this.gender = gender;
@@ -28,11 +33,11 @@ public class User {
         this.city = city;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,11 +57,11 @@ public class User {
         this.gender = gender;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -83,7 +88,6 @@ public class User {
     public void setCity(String city) {
         this.city = city;
     }
-
 }
 
 

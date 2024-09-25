@@ -29,7 +29,7 @@ public class UserController extends SelectorComposer<Component> {
     private Label genderLabel;
 
     @Wire
-    private Label birthdateLabel;
+    private Label birthdayLabel;
 
     @Wire
     private Label ageLabel;
@@ -68,7 +68,7 @@ public class UserController extends SelectorComposer<Component> {
         idLabel.setValue("Id: " + selected.getId().toString());
         usernameLabel.setValue("Username: " + selected.getUsername());
         genderLabel.setValue("Gender: " + selected.getGender());
-        birthdateLabel.setValue("Birthday: " + selected.getBirthday());
+        birthdayLabel.setValue("Birthday: " + selected.getBirthday());
         ageLabel.setValue("Age: " + selected.getAge().toString());
         provinceLabel.setValue("Province: " + selected.getProvince());
         cityLabel.setValue("City: " + selected.getCity());

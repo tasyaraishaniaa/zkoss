@@ -58,9 +58,10 @@
                 <a href="home.zul" sclass="a-west">Home</a>
                 <a href="registration.zul" sclass="a-west">Registration</a>
                 <a href="user-detail.zul" sclass="a-west">Users</a>
+                <a href="user-detail-mvvm.zul" sclass="a-west">Users MVVM</a>
             </vbox>
         </west>
-        <center self="@insert(content)">
+        <center self="@insert(content)" autoscroll="true">
         </center>
         <south sclass="south-window">
             <div style="width: 100%;">

@@ -86,7 +86,7 @@
                 <label id="idLabel" class="label"/>
                 <label id="usernameLabel" class="label"/>
                 <label id="genderLabel" class="label"/>
-                <label id="birthdateLabel" class="label"/>
+                <label id="birthdayLabel" class="label"/>
                 <label id="ageLabel" class="label"/>
                 <label id="provinceLabel" class="label"/>
                 <label id="cityLabel" class="label"/>

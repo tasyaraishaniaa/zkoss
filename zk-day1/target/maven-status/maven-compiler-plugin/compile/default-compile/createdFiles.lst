@@ -1,4 +1,6 @@
 user\UserController.class
+user\Users.class
+user\SearchViewModel.class
 user\UserService.class
 user\User.class
 user\UserServiceImpl.class

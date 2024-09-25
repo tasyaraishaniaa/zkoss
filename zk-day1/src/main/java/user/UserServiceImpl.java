@@ -1,68 +1,23 @@
 package user;
 
-import java.util.LinkedList;
+import java.util.Date;
 import java.util.List;
+import java.util.LinkedList;
+import java.util.UUID;
 
 public class UserServiceImpl implements UserService {
 
-    private List<User> userList = new LinkedList<User>();
+    private Users users = new Users();
 
-    private int id = 1;
-
-    public UserServiceImpl() {
-        userList.add(
-                new User(id++,
-                        "JohnDoe",
-                        "Male",
-                        "1990-01-01",
-                        34,
-                        "California",
-                        "Los Angeles"
-                        ));
-        userList.add(
-                new User(id++,
-                        "JaneSmith",
-                        "Female",
-                        "1992-05-15",
-                        31,
-                        "New York",
-                        "New York City"
-                ));
-        userList.add(
-                new User(id++,
-                        "MikeJohnson",
-                        "Male",
-                        "1985-09-30",
-                        38,
-                        "Texas",
-                        "Houston"
-                ));
-        userList.add(
-                new User(id++,
-                        "EmilyDavis",
-                        "Female",
-                        "1988-12-22",
-                        35,
-                        "Florida",
-                        "Miami"
-                ));
-        userList.add(
-                new User(id++,
-                        "ChrisBrown",
-                        "Male",
-                        "1993-06-10",
-                        30,
-                        "Illonois",
-                        "Chicago"
-                ));
-    }
-
+    @Override
     public List<User> findAll() {
-        return userList;
+        return users.findAll();
     }
 
+    @Override
     public List<User> search(String keyword) {
-        List<User> result = new LinkedList<User>();
+        List<User> result = new LinkedList<>();
+        List<User> userList = users.findAll();
 
         if (keyword == null || "".equals(keyword)) {
             result = userList;
@@ -75,4 +30,31 @@ public class UserServiceImpl implements UserService {
         }
         return result;
     }
+
+    @Override
+    public void delete(User selectedUser) {
+        users.delete(selectedUser);
+    }
+
+    @Override
+    public void add(String username, String gender, Date birthday, Integer age, String province, String city) {
+        User newUser = new User(UUID.randomUUID().toString(), username, gender, birthday, age, province, city);
+        users.add(newUser);
+    }
+
+    @Override
+    public void update(User updatedUser) {
+        users.findAll().stream()
+                .filter(user -> user.getId().equals(updatedUser.getId()))
+                .findFirst()
+                .ifPresent(existingUser -> {
+                    existingUser.setUsername(updatedUser.getUsername());
+                    existingUser.setGender((updatedUser.getGender()));
+                    existingUser.setBirthday(updatedUser.getBirthday());
+                    existingUser.setAge(updatedUser.getAge());
+                    existingUser.setProvince(updatedUser.getProvince());
+                    existingUser.setCity(updatedUser.getCity());
+                });
+    }
+
 }

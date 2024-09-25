@@ -1,49 +1,66 @@
 <?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul"?>
 <zk>
     <style>
-        .column {
-        background-color: #003366;
+        .window {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 1200px;
+        background-color: white;
         padding: 20px;
+        border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .button {
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.3s, color 0.3s;
+        .label {
+        color: #003366;
+        padding: 5px;
         }
 
-        .reset-button {
+        .button {
         background-color: #e0f7ff;
         color: #003366;
         border: 1px solid #003366;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-right: 10px;
         }
 
-        .reset-button:hover {
+        .button:hover {
         background-color: #003366;
         color: white;
         border: 1px solid white;
         }
 
-        .submit-button {
+        .listbox {
+        border: 1px solid #ddd;
+        background-color: white;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        }
+
+        .listitem:hover {
+        background-color: #e0f7ff;
+        }
+
+        .listheader {
         background-color: #003366;
         color: white;
-        border: 1px solid #003366;
+        border: none;
         }
 
-        .submit-button:hover {
-        background-color: white;
+        .listcell {
         color: #003366;
-        border: 1px solid #003366;
         }
 
-        .button:disabled {
-        background-color: #f0f0f0;
-        color: #a0a0a0;
-        border: 1px solid #ddd;
-        cursor: not-allowed;
+        .update-title {
+        color: #003366;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
         }
     </style>
     <zscript>
@@ -136,63 +153,69 @@
                 }
                 ]]>
     </zscript>
-    <window title="Welcome! New User" border="normal" sclass="center-window" self="@define(content)" viewModel="@id('vm') @init('user.SearchViewModel')">
-        <grid>
-            <columns>
-                <column label="Registration Form" iconSclass="z-icon-user-circle-o" sclass="column"/>
-            </columns>
-            <rows>
-                <row>
-                    <label value="Username"/>
-                    <textbox id="username" width="99%" constraint="no empty" value="@save(vm.username)"/>
-                </row>
-                <row>
-                    <label value="Gender"/>
-                    <radiogroup id="gender" selectedItem="@save(vm.gender)">
-                        <radio label="Male" iconSclass="z-icon-male" value="Male"/>
-                        <radio label="Female" iconSclass="z-icon-female" value="Female"/>
-                    </radiogroup>
-                </row>
-                <row>
-                    <label value="Birthday"/>
-                    <datebox id="birthday" width="99%" constraint="no empty, no future" value="@save(vm.birthday)"/>
-                </row>
-                <row>
-                    <label value="Age"/>
-                    <spinner id="age" constraint="no empty, min 0" width="99%" value="@save(vm.age)"/>
-                </row>
-                <row>
-                    <label value="Province"/>
-                    <combobox id="province" constraint="no empty" onChange="onProvinceChange()" width="99%" value="@save(vm.province)">
-                        <comboitem label="DKI Jakarta" value="DKI Jakarta"/>
-                        <comboitem label="Banten" value="Banten"/>
-                        <comboitem label="Jawa Barat" value="Jawa Barat"/>
-                    </combobox>
-                </row>
-                <row>
-                    <label value="City"/>
-                    <combobox id="city" constraint="no empty" onChange="onCheck()" width="99%" value="@save(vm.city)"/>
-                </row>
-                <row spans="2" align="right">
-                    <hlayout>
-                        <checkbox id="acceptTerm" onCheck="onCheck()" disabled="true"/>
-                        <label value="Accept Term of Use (Click for detail)" popup="showTerm, position=end_after" style="cursor: pointer"/>
-                    </hlayout>
-                </row>
-                <row spans="2" align="right">
-                    <div>
-                        <label value="Help (Ctrl+h)" popup="showHelp, position=end_after" style="cursor: pointer"/>
-                        <button label="Reset" width="100px" onClick="onReset()" sclass="reset-button"/>
-                        <button id="submitButton" label="Submit" width="100px" onClick="@command('add')" disabled="true" sclass="submit-button"/>
+    <window title="User Registration Table" border="normal" sclass="window" self="@define(content)" onOK="@command('search')" viewModel="@id('vm') @init('user.SearchViewModel')" style="margin: 15vh auto;">
+    <label class="label">Username:</label>
+        <textbox value="@save(vm.keyword)" style="margin-right: 10px;"/>
+        <button label="Search" iconSclass="z-icon-search" sclass="button" onClick="@command('search')"/>
+        <button label="Delete" iconSclass="z-icon-trash" sclass="button" onClick="@command('delete')"/>
+        <listbox model="@init(vm.userList)" emptyMessage="No user found in the result" rows="5" sclass="listbox" selectedItem="@save(vm.selectedUser)">
+            <listhead>
+                <listheader label="Id" sclass="listheader"/>
+                <listheader label="Username" sclass="listheader"/>
+                <listheader label="Gender" sclass="listheader"/>
+                <listheader label="Birthday" sclass="listheader"/>
+                <listheader label="Age" sclass="listheader"/>
+                <listheader label="Province" sclass="listheader"/>
+                <listheader label="City" sclass="listheader"/>
+            </listhead>
+            <template name="model">
+                <listitem>
+                    <listcell label="@init(each.id)"/>
+                    <listcell label="@init(each.username)"/>
+                    <listcell label="@init(each.gender)"/>
+                    <listcell label="@init(each.birthday)"/>
+                    <listcell label="@init(each.age)"/>
+                    <listcell label="@init(each.province)"/>
+                    <listcell label="@init(each.city)"/>
+                </listitem>
+            </template>
+        </listbox>
+        <div sclass="update-title">
+            <label value="Update Data" style="font-weight: bold; font-size: 18px;"/>
+        </div>
+        <hlayout>
+            <vlayout hflex="1">
+                <div style="display: flex; gap: 15px; flex-direction: row; margin-left: 20vh; margin-right: 20vh;">
+                    <div style="display: flex; align-items: center; flex-direction: column; width: 20vw;">
+                        <label value="Username" style="margin-top: 2vh; margin-bottom: 1vh;"/>
+                        <textbox id="username" width="99%" constraint="no empty" value="@bind(vm.selectedUser.username)"/>
+                        <label value="Gender" style="margin-top: 2vh; margin-bottom: 2vh;"/>
+                        <radiogroup id="gender" selectedItem="@bind(vm.selectedUser.gender)" disabled="false">
+                            <radio label="Male" value="Male" iconSclass="z-icon-male"/>
+                            <radio label="Female" value="Female" iconSclass="z-icon-female"/>
+                        </radiogroup>
                     </div>
-                </row>
-            </rows>
-        </grid>
-        <popup id="showTerm">
-            Term of Use
-        </popup>
-        <popup id="showHelp">
-            Help
-        </popup>
+                    <div style="display: flex; align-items: center; flex-direction: column; width: 20vw;">
+                        <label value="Birthday" style="margin-top: 2vh; margin-bottom: 1vh;"/>
+                        <datebox width="99%" value="@bind(vm.selectedUser.birthday)"/>
+                        <label value="Age" style="margin-top: 2vh; margin-bottom: 1vh;"/>
+                        <spinner id="age" constraint="no empty, min 0" width="99%" value="@bind(vm.selectedUser.age)"/>
+                    </div>
+                    <div style="display: flex; align-items: center;  flex-direction: column; width: 20vw;">
+                        <label value="Province" style="margin-top: 2vh; margin-bottom: 1vh;"/>
+                        <combobox id="province" constraint="no empty" onChange="onProvinceChange()" width="99%" value="@bind(vm.selectedUser.province)">
+                            <comboitem label="DKI Jakarta" value="DKI Jakarta"/>
+                            <comboitem label="Banten" value="Banten"/>
+                            <comboitem label="Jawa Barat" value="Jawa Barat"/>
+                        </combobox>
+                        <label value="City" style="margin-top: 2vh; margin-bottom: 1vh;"/>
+                        <combobox id="city" constraint="no empty" onChange="onCheck()" width="99%" value="@bind(vm.selectedUser.city)"/>
+                    </div>
+                </div>
+            </vlayout>
+        </hlayout>
+        <div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 20px;">
+            <button label="Update" width="100px" onClick="@command('update')" sclass="button"/>
+        </div>
     </window>
 </zk>

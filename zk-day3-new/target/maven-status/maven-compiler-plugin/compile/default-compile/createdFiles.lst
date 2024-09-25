@@ -1,0 +1,10 @@
+user\UserRepository.class
+com\fif\services\impl\LogDao.class
+user\SearchViewModel.class
+user\UserService.class
+com\fif\entity\Log.class
+com\fif\services\MyService.class
+com\fif\MyViewModel.class
+user\User.class
+com\fif\services\impl\MyServiceImpl.class
+user\UserServiceImpl.class

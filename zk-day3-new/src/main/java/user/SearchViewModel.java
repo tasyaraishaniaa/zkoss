@@ -1,14 +1,10 @@
 package user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.zkoss.bind.annotation.AfterCompose;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
-
 import org.zkoss.zk.ui.select.annotation.WireVariable;
-import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListModelList;
 
 import java.text.ParseException;
@@ -20,9 +16,9 @@ import java.util.List;
 public class SearchViewModel {
 
     @WireVariable
-    private UserServiceImpl userService;
-    private List<User> userList;
+    private UserService userService;
 
+    private List<User> userList;
     private String username;
     private String gender;
     private Date birthday;
@@ -31,60 +27,66 @@ public class SearchViewModel {
     private String city;
     private String keyword;
     private User selectedUser;
-//    private ListModelList<User> userListModel;
 
-
-
-
-//    @AfterCompose
     @Init
     public void init() {
+//        userList = new ListModelList<>();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        try {
+//            userService.addUser(new User(
+//                    "JohnDoe",
+//                    "Male",
+//                    sdf.parse("1990-01-01"),
+//                    34,
+//                    "Jakarta",
+//                    "Jakarta Pusat"
+//            ));
+//            userService.addUser(new User(
+//                    "JaneSmith",
+//                    "Female",
+//                    sdf.parse("1992-05-15"),
+//                    31,
+//                    "Jawa Barat",
+//                    "Bandung"
+//            ));
+//            userService.addUser(new User(
+//                    "MikeJohnson",
+//                    "Male",
+//                    sdf.parse("1985-09-30"),
+//                    38,
+//                    "Banten",
+//                    "Tangerang"
+//            ));
+//            userService.addUser(new User(
+//                    "EmilyDavis",
+//                    "Female",
+//                    sdf.parse("1988-12-22"),
+//                    35,
+//                    "Jakarta",
+//                    "Jakarta Barat"
+//            ));
+//            userService.addUser(new User(
+//                    "ChrisBrown",
+//                    "Male",
+//                    sdf.parse("1993-06-10"),
+//                    30,
+//                    "Jawa Barat",
+//                    "Tangerang Selatan"
+//            ));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        userList.addAll(userService.getUsers());
         userList = new ListModelList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            userService.addUser(new User(
-                    "JohnDoe",
-                    "Male",
-                    sdf.parse("1990-01-01"),
-                    34,
-                    "Jakarta",
-                    "Jakarta Pusat"
-            ));
-            userService.addUser(new User(
-                    "JaneSmith",
-                    "Female",
-                    sdf.parse("1992-05-15"),
-                    31,
-                    "Jawa Barat",
-                    "Bandung"
-            ));
-            userService.addUser(new User(
-                    "MikeJohnson",
-                    "Male",
-                    sdf.parse("1985-09-30"),
-                    38,
-                    "Banten",
-                    "Tangerang"
-            ));
-            userService.addUser(new User(
-                    "EmilyDavis",
-                    "Female",
-                    sdf.parse("1988-12-22"),
-                    35,
-                    "Jakarta",
-                    "Jakarta Barat"
-            ));
-            userService.addUser(new User(
-                    "ChrisBrown",
-                    "Male",
-                    sdf.parse("1993-06-10"),
-                    30,
-                    "Jawa Barat",
-                    "Tangerang Selatan"
-            ));
+            // Adding sample users
+            userService.addUser(new User("JohnDoe", "Male", sdf.parse("1990-01-01"), 34, "Jakarta", "Jakarta Pusat"));
+            // Add more users...
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
         userList.addAll(userService.getUsers());
     }
 

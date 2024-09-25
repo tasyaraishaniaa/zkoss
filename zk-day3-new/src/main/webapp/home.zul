@@ -1,0 +1,56 @@
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="template.zul"?>
+<zk>
+    <style>
+        .home-container {
+        text-align: center;
+        padding: 50px;
+        font-family: Arial, sans-serif;
+        background-color: #f0f4f7;
+        }
+
+        .home-title {
+        font-size: 36px;
+        color: #003366;
+        font-weight: bold;
+        margin-bottom: 20px;
+        }
+
+        .home-description {
+        font-size: 18px;
+        color: #555555;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        }
+
+        .home-btn {
+        background-color: #003366;
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        }
+
+        .home-btn:hover {
+        background-color: white;
+        color: #003366 !important;
+        border: 1px solid #003366;
+        }
+    </style>
+    <window self="@define(content)">
+        <div class="home-container">
+            <div class="home-title">
+                Welcome to OnboardX
+            </div>
+            <div class="home-description">
+                OnboardX is your one-stop solution for simplifying the registration process. Whether you need to onboard new users, streamline employee entry, or manage customer data, OnboardX makes it fast and easy. Our intuitive system allows for seamless integration with any platform, offering a secure and efficient registration experience. Experience smooth user flow with personalized onboarding options and a user-friendly interface that suits your needs.
+            </div>
+            <a href="registration.zul" class="home-btn" style="color: white;">Get Started</a>
+        </div>
+    </window>
+</zk>

@@ -80,7 +80,7 @@
 						<contextPath>/${project.artifactId}</contextPath>
 						<allowDuplicateFragmentNames>true</allowDuplicateFragmentNames>
 					</webApp>
-					<scanIntervalSeconds>5</scanIntervalSeconds>
+<!--					<scanIntervalSeconds>5</scanIntervalSeconds>-->
 				</configuration>
 			</plugin>
 			<!-- Compile java -->

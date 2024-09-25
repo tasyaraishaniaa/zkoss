@@ -55,7 +55,7 @@
         color: #003366;
         }
     </style>
-    <window title="User Registration Table" border="normal" sclass="window" self="@define(content)" apply="user.UserController">
+    <window title="User Registration Table" border="normal" sclass="window" self="@define(content)" apply="user.UserController" style="margin: 8vh auto;">
         <label class="label">Username:</label>
         <textbox id="keywordBox" style="margin-right: 10px;"/>
         <button id="searchButton" label="Search" iconSclass="z-icon-search" sclass="button"/>

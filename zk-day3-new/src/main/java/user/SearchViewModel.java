@@ -28,7 +28,7 @@ public class SearchViewModel {
     private String keyword;
     private User selectedUser;
 
-    @Init
+//    @Init
     public void init() {
 //        userList = new ListModelList<>();
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

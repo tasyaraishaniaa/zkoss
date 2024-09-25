@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ff6f07c-9dc9-4ecf-bb88-39c8cee5343e" name="Changes" comment="">
+    <list default="true" id="bf51150d-9726-4308-bf50-c23d9c60bd68" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../zk-day3/src/main/java/user/SearchViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zk-day3/src/main/java/user/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zk-day3/src/main/java/user/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zk-day3/src/main/java/user/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zk-day3/src/main/java/user/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zk-day3/src/main/java/user/Users.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zk-day3/src/main/webapp/home.zul" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zk-day3/src/main/webapp/registration.zul" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zk-day3/src/main/webapp/template.zul" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zk-day3/src/main/webapp/user-detail-mvvm.zul" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../zk-day3/src/main/webapp/user-detail.zul" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,29 +26,31 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
-  <component name="ProjectId" id="2mY4MKeDL9dl9sbuvx6fO3GmAfW" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2mY4yWlzRViBo5rTctMLBbJSpSk" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "day-2-mvvm",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;day-3&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/68769/Documents/In Class Training/ZKoss/zkoss/zk-day3&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <created>1727240231492</created>
+      <changelist id="bf51150d-9726-4308-bf50-c23d9c60bd68" name="Changes" comment="" />
+      <created>1727240431869</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1727240231492</updated>
+      <updated>1727240431869</updated>
     </task>
     <servers />
   </component>

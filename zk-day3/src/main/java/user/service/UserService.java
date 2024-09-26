@@ -1,4 +1,6 @@
-package user;
+package user.service;
+
+import user.entity.User;
 
 import java.util.List;
 

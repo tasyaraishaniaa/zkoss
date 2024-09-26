@@ -1,4 +1,4 @@
-package user;
+package user.controller;
 
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
@@ -7,6 +7,9 @@ import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.ListModelList;
+import user.service.UserService;
+import user.entity.User;
+
 import java.util.Date;
 import java.util.List;
 

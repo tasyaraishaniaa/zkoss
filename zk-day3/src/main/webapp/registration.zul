@@ -48,8 +48,6 @@
     </style>
     <zscript>
         <![CDATA[
-                user.User newUser = new user.User();
-
                 public void onReset() {
                     Textbox usernameTextbox = (Textbox) self.getFellow("username");
                     Radiogroup genderRadiogroup = (Radiogroup) self.getFellow("gender");
@@ -136,7 +134,7 @@
                 }
                 ]]>
     </zscript>
-    <window title="Welcome! New User" border="normal" sclass="center-window" self="@define(content)" viewModel="@id('vm') @init('user.SearchViewModel')">
+    <window title="Welcome! New User" border="normal" sclass="center-window" self="@define(content)" viewModel="@id('vm') @init('user.controller.SearchViewModel')">
         <grid>
             <columns>
                 <column label="Registration Form" iconSclass="z-icon-user-circle-o" sclass="column"/>

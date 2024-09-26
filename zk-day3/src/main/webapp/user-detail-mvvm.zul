@@ -65,8 +65,6 @@
     </style>
     <zscript>
         <![CDATA[
-                user.User newUser = new user.User();
-
                 public void onReset() {
                     Textbox usernameTextbox = (Textbox) self.getFellow("username");
                     Radiogroup genderRadiogroup = (Radiogroup) self.getFellow("gender");
@@ -153,7 +151,7 @@
                 }
                 ]]>
     </zscript>
-    <window title="User Registration Table" border="normal" sclass="window" self="@define(content)" onOK="@command('search')" viewModel="@id('vm') @init('user.SearchViewModel')" style="margin: 15vh auto;">
+    <window title="User Registration Table" border="normal" sclass="window" self="@define(content)" onOK="@command('search')" viewModel="@id('vm') @init('user.controller.SearchViewModel')" style="margin: 15vh auto;">
     <label class="label">Username:</label>
         <textbox value="@save(vm.keyword)" style="margin-right: 10px;"/>
         <button label="Search" iconSclass="z-icon-search" sclass="button" onClick="@command('search')"/>

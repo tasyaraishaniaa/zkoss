@@ -1,9 +1,13 @@
-package user;
+package user.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
+import user.entity.User;
+import user.repository.UserRepository;
+import user.service.UserService;
+
 import java.util.List;
 
 @Service("userService")

@@ -157,7 +157,7 @@
     <label class="label">Username:</label>
         <textbox value="@save(vm.keyword)" style="margin-right: 10px;"/>
         <button label="Search" iconSclass="z-icon-search" sclass="button" onClick="@command('search')"/>
-        <button label="Delete" iconSclass="z-icon-trash" sclass="button" onClick="@command('delete')"/>
+        <button label="Delete" iconSclass="z-icon-trash" sclass="button" onClick="@command('deleteUser')"/>
         <listbox model="@bind(vm.userList)" emptyMessage="No user found in the result" rows="5" sclass="listbox" selectedItem="@save(vm.selectedUser)">
             <listhead>
                 <listheader label="Id" sclass="listheader"/>
@@ -215,7 +215,7 @@
             </vlayout>
         </hlayout>
         <div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 20px;">
-            <button label="Update" width="100px" onClick="@command('update')" sclass="button"/>
+            <button label="Update" width="100px" onClick="@command('updateUser')" sclass="button"/>
         </div>
     </window>
 </zk>

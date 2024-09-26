@@ -8,6 +8,10 @@ public interface UserService {
 
     List<User> getUsers();
 
-    void deleteUser(User user);
+    void deleteUser(Integer id);
+
+    void updateUser(User user);
+
+    List<User> search(String keyword);
 
 }

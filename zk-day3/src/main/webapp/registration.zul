@@ -183,7 +183,7 @@
                     <div>
                         <label value="Help (Ctrl+h)" popup="showHelp, position=end_after" style="cursor: pointer"/>
                         <button label="Reset" width="100px" onClick="onReset()" sclass="reset-button"/>
-                        <button id="submitButton" label="Submit" width="100px" onClick="@command('add')" disabled="true" sclass="submit-button"/>
+                        <button id="submitButton" label="Submit" width="100px" onClick="@command('addUser')" disabled="true" sclass="submit-button"/>
                     </div>
                 </row>
             </rows>

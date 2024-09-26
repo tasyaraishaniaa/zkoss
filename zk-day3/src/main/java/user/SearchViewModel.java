@@ -1,18 +1,12 @@
 package user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.zkoss.bind.annotation.AfterCompose;
-import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
+import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
-
 import org.zkoss.zk.ui.select.annotation.WireVariable;
-import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListModelList;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,9 +14,9 @@ import java.util.List;
 public class SearchViewModel {
 
     @WireVariable
-    private UserServiceImpl userService;
-    private List<User> userList;
+    private UserService userService;
 
+    private List<User> userList;
     private String username;
     private String gender;
     private Date birthday;
@@ -31,77 +25,48 @@ public class SearchViewModel {
     private String city;
     private String keyword;
     private User selectedUser;
-//    private ListModelList<User> userListModel;
 
-
-
-
-//    @AfterCompose
     @Init
     public void init() {
         userList = new ListModelList<>();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            userService.addUser(new User(
-                    "JohnDoe",
-                    "Male",
-                    sdf.parse("1990-01-01"),
-                    34,
-                    "Jakarta",
-                    "Jakarta Pusat"
-            ));
-            userService.addUser(new User(
-                    "JaneSmith",
-                    "Female",
-                    sdf.parse("1992-05-15"),
-                    31,
-                    "Jawa Barat",
-                    "Bandung"
-            ));
-            userService.addUser(new User(
-                    "MikeJohnson",
-                    "Male",
-                    sdf.parse("1985-09-30"),
-                    38,
-                    "Banten",
-                    "Tangerang"
-            ));
-            userService.addUser(new User(
-                    "EmilyDavis",
-                    "Female",
-                    sdf.parse("1988-12-22"),
-                    35,
-                    "Jakarta",
-                    "Jakarta Barat"
-            ));
-            userService.addUser(new User(
-                    "ChrisBrown",
-                    "Male",
-                    sdf.parse("1993-06-10"),
-                    30,
-                    "Jawa Barat",
-                    "Tangerang Selatan"
-            ));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         userList.addAll(userService.getUsers());
     }
-
-    public List<User> getUserListModel() { return userList; }
 
     @Command
     public void addUser() {
         User user = new User(username, gender, birthday, age, province, city);
         user = userService.addUser(user);
         userList.add(user);
+        Executions.sendRedirect("user-detail-mvvm.zul");
     }
 
     @Command
-    public void deleteUser(@BindingParam("user") User user) {
-        userService.deleteUser(selectedUser);
+    @NotifyChange("userList")
+    public void deleteUser() {
+        if (selectedUser == null)
+            throw new RuntimeException("Please select user before delete");
+        userService.deleteUser(selectedUser.getId());
         userList.remove(selectedUser);
+        Executions.sendRedirect("user-detail-mvvm.zul");
     }
+
+    @Command
+    @NotifyChange({"userList", "selectedUser"})
+    public void updateUser() {
+        if (selectedUser == null)
+            throw new RuntimeException("Please select user before update");
+        userService.updateUser(selectedUser);
+        Executions.sendRedirect("user-detail-mvvm.zul");
+    }
+
+    @Command
+    @NotifyChange("userList")
+    public void search() {
+        selectedUser = null;
+        userList.clear();
+        userList.addAll(userService.search(keyword));
+    }
+
 
     public String getUsername() {
         return username;
@@ -159,14 +124,6 @@ public class SearchViewModel {
         this.keyword = keyword;
     }
 
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
-    }
-
     public User getSelectedUser() {
         return selectedUser;
     }
@@ -175,43 +132,20 @@ public class SearchViewModel {
         this.selectedUser = selectedUser;
     }
 
-//    public void setUserListModel(ListModelList<User> userListModel) {
-//        this.userListModel = userListModel;
-//    }
+    public UserService getUserService() {
+        return userService;
+    }
 
-    //    public SearchViewModel() {
-//        userList.addAll(userService.findAll());
-//    }
-//
-//    @Command
-//    public void search() {
-//        userList.clear();
-//        userList.addAll(userService.search(keyword));
-//        System.out.println(userList);
-////        UUID.randomUUID().toString();
-//    }
-//
-//    @Command
-//    public void delete() {
-//        if (selectedUser == null)
-//            throw new RuntimeException("Please select user before delete");
-//        userService.delete(selectedUser);
-//        userList.remove(selectedUser);
-//        selectedUser = null;
-//    }
-//
-//    @Command
-//    @NotifyChange("userList")
-//    public void add() {
-//        userService.add(username, gender, birthday, age, province, city);
-//        Executions.sendRedirect("user-detail-mvvm.zul");
-//    }
-//
-//    @Command
-//    @NotifyChange({"userList", "selectedUser"})
-//    public void update() {
-//        userService.update(selectedUser);
-//        Executions.sendRedirect("user-detail-mvvm.zul");
-//    }
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
 
 }

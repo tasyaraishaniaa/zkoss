@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
  
- 	<context:component-scan base-package="com.fif" />
+ 	<context:component-scan base-package="user" />
  	
  	<!-- jpa(hibernate) configuration -->
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">

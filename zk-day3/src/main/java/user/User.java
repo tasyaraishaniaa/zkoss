@@ -7,8 +7,6 @@ import java.util.Date;
 @Entity(name = "User")
 public class User implements Serializable, Cloneable {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
@@ -19,7 +17,7 @@ public class User implements Serializable, Cloneable {
     @Column(nullable = false)
     String gender;
 
-    @Column(nullable = false)
+    @Column
     Date birthday;
 
     @Column(nullable = false)

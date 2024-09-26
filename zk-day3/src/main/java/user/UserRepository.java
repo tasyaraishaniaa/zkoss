@@ -2,7 +2,6 @@ package user;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -13,56 +12,6 @@ public class UserRepository {
 
     @PersistenceContext
     private EntityManager em;
-
-//    public static List<User> users = new ArrayList<>();
-//
-//    static {
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        try {
-//            users.add(new User(
-//                    "JohnDoe",
-//                    "Male",
-//                    sdf.parse("1990-01-01"),
-//                    34,
-//                    "Jakarta",
-//                    "Jakarta Pusat"
-//            ));
-//            users.add(new User(
-//                    "JaneSmith",
-//                    "Female",
-//                    sdf.parse("1992-05-15"),
-//                    31,
-//                    "Jawa Barat",
-//                    "Bandung"
-//            ));
-//            users.add(new User(
-//                    "MikeJohnson",
-//                    "Male",
-//                    sdf.parse("1985-09-30"),
-//                    38,
-//                    "Banten",
-//                    "Tangerang"
-//            ));
-//            users.add(new User(
-//                    "EmilyDavis",
-//                    "Female",
-//                    sdf.parse("1988-12-22"),
-//                    35,
-//                    "Jakarta",
-//                    "Jakarta Barat"
-//            ));
-//            users.add(new User(
-//                    "ChrisBrown",
-//                    "Male",
-//                    sdf.parse("1993-06-10"),
-//                    30,
-//                    "Jawa Barat",
-//                    "Tangerang Selatan"
-//            ));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     @Transactional(readOnly = true)
     public List<User> queryAll() {
@@ -77,8 +26,8 @@ public class UserRepository {
     }
 
     @Transactional
-    public void delete(User user) {
-        User u = get(user.getId());
+    public void delete(Integer id) {
+        User u = get(id);
         if(u != null) {
             em.remove(u);
         }
@@ -89,6 +38,27 @@ public class UserRepository {
         em.persist(user);
         em.flush();
         return user;
+    }
+
+    @Transactional
+    public User update(User user) {
+        User selectedUser = get(user.getId());
+        selectedUser.setUsername(user.getUsername());
+        selectedUser.setGender(user.getGender());
+        selectedUser.setBirthday(user.getBirthday());
+        selectedUser.setAge(user.getAge());
+        selectedUser.setProvince(user.getProvince());
+        selectedUser.setCity(user.getCity());
+        em.merge(selectedUser);
+        return user;
+    }
+
+    @Transactional(readOnly = true)
+    public List<User> search(String keyword) {
+        Query query = em.createQuery("SELECT u FROM User u WHERE u.username LIKE :keyword");
+        query.setParameter("keyword", "%" + keyword + "%");
+        List<User> resultList = query.getResultList();
+        return resultList;
     }
 
 }

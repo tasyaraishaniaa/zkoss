@@ -20,7 +20,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/**/*").permitAll();
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/home.zul", "/registration.zul")
+                .hasAnyRole("USER", "ADMIN")
+                .antMatchers("/user-detail-mvvm.zul")
+                .hasRole("ADMIN")
+                .and()
+                .formLogin()
+                .loginPage("/login.zul")
+                .defaultSuccessUrl("/home.zul")
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .permitAll()
+                .and().exceptionHandling().accessDeniedPage("/accessDenied.zul");
     }
 
     @Override

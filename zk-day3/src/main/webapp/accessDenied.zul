@@ -1,0 +1,56 @@
+<zk>
+    <style>
+        .window {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 300px;
+        height: 200px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        color: #555555;
+        }
+
+        .logout-btn {
+        font-size: 16px;
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        background-color: #003366;
+        border-radius: 5px;
+        padding: 5px 10px;
+        }
+
+        .logout-btn:hover {
+        color: #003366;
+        background-color: #e0f7ff;
+        text-decoration: none;
+        border: 1px solid #003366;
+        }
+
+
+
+        .z-icon {
+        margin-right: 8px;
+        }
+
+        .center-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        text-align: center;
+        }
+    </style>
+    <window border="normal" closable="false" minimizable="false" maximizable="false" sclass="window">
+        <vlayout spacing="20px" sclass="center-content">
+            <label value="Access Denied" style="font-size: 18px; font-weight: bold; color: red;" />
+            <label value="You do not have permission to access this page." style="font-size: 14px;" />
+            <button label="Logout" onClick='Executions.sendRedirect("/logout")' class="logout-btn" />
+        </vlayout>
+    </window>
+</zk>

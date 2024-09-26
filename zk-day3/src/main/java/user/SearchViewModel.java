@@ -30,6 +30,7 @@ public class SearchViewModel {
     public void init() {
         userList = new ListModelList<>();
         userList.addAll(userService.getUsers());
+        keyword = "";
     }
 
     @Command
